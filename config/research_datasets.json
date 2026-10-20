@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "task_definition": {
+    "primary_task": "Binary phishing detection",
+    "positive_class": "phishing",
+    "negative_classes": [
+      "legitimate",
+      "spam"
+    ],
+    "excluded_from_primary": [
+      "other_fraud"
+    ],
+    "rationale": "Spam is retained as a hard negative, not relabelled as phishing. Advance-fee fraud remains visible for boundary auditing but is not silently treated as phishing.",
+    "secondary_task": "Four-way descriptive audit: legitimate, spam, phishing, other_fraud"
+  },
+  "sources": [
+    {
+      "id": "enron_spam",
+      "path": "data/Enron.csv",
+      "role": "train",
+      "collection": "Seven Phishing Email Datasets",
+      "original_labels": {
+        "0": "legitimate",
+        "1": "spam"
+      },
+      "research_binary": {
+        "0": 0,
+        "1": 0
+      },
+      "provenance_url": "https://figshare.com/articles/dataset/Seven_Phishing_Email_Datasets/25432108",
+      "citation": "Champa, Rabbi, & Zibran (2024), Curated Datasets and Feature Analysis for Phishing Email Detection with Machine Learning",
+      "license": "CC BY 4.0",
+      "sha256": "99933d3233510cf5dc2ee7768ddc609425cb8002bf5d7691d9a7157ffa5fd318",
+      "notes": "Label 1 is unsolicited commercial spam, not phishing."
+    },
+    {
+      "id": "ceas_2008",
+      "path": "data/CEAS_08.csv",
+      "role": "train",
+      "collection": "Seven Phishing Email Datasets",
+      "original_labels": {
+        "0": "legitimate",
+        "1": "spam"
+      },
+      "research_binary": {
+        "0": 0,
+        "1": 0
+      },
+      "provenance_url": "https://figshare.com/articles/dataset/Seven_Phishing_Email_Datasets/25432108",
+      "citation": "Champa, Rabbi, & Zibran (2024)",
+      "license": "CC BY 4.0",
+      "sha256": "22375e7d5f5a8229dbe987914ee9b3705656c590038662a7df6054629b376074",
+      "notes": "Historical 2008 spam corpus; years and volatile identifiers are masked in the research text."
+    },
+    {
+      "id": "lingspam",
+      "path": "data/Ling.csv",
+      "role": "train",
+      "collection": "Seven Phishing Email Datasets",
+      "original_labels": {
+        "0": "legitimate",
+        "1": "spam"
+      },
+      "research_binary": {
+        "0": 0,
+        "1": 0
+      },
+      "provenance_url": "https://figshare.com/articles/dataset/Seven_Phishing_Email_Datasets/25432108",
+      "citation": "Champa, Rabbi, & Zibran (2024)",
+      "license": "CC BY 4.0",
+      "sha256": "c133792260f18b251e9377b9cb31bef226322af6dc0d79841f61c67489929eca",
+      "notes": "Historical mailing-list/spam corpus; used only as a hard negative."
+    },
+    {
+      "id": "spamassassin",
+      "path": "data/SpamAssassin.csv",
+      "role": "train",
+      "collection": "Seven Phishing Email Datasets",
+      "original_labels": {
+        "0": "legitimate",
+        "1": "spam"
+      },
+      "research_binary": {
+        "0": 0,
+        "1": 0
+      },
+      "provenance_url": "https://figshare.com/articles/dataset/Seven_Phishing_Email_Datasets/25432108",
+      "citation": "Champa, Rabbi, & Zibran (2024)",
+      "license": "CC BY 4.0",
+      "sha256": "3bfe8f8abff89f69a98456be50413c2fcb20a476141116dd84ee1507b980c00e",
+      "notes": "Label 1 is spam; spelling of the legacy combined-data source is not used."
+    },
+    {
+      "id": "nazario_phishing",
+      "path": "data/Nazario.csv",
+      "role": "train",
+      "collection": "Seven Phishing Email Datasets",
+      "original_labels": {
+        "1": "phishing"
+      },
+      "research_binary": {
+        "1": 1
+      },
+      "provenance_url": "https://figshare.com/articles/dataset/Seven_Phishing_Email_Datasets/25432108",
+      "citation": "Champa, Rabbi, & Zibran (2024)",
+      "license": "CC BY 4.0",
+      "sha256": "b8fbc4158fbdfaff1ed98584c43d72e283c6352d7ade4d457d34c1d79488d184",
+      "notes": "The only verified phishing-positive source in the historical local training collection."
+    },
+    {
+      "id": "nigerian_fraud",
+      "path": "data/Nigerian_Fraud.csv",
+      "role": "boundary_audit",
+      "collection": "Seven Phishing Email Datasets",
+      "original_labels": {
+        "1": "other_fraud"
+      },
+      "research_binary": {
+        "1": null
+      },
+      "provenance_url": "https://figshare.com/articles/dataset/Seven_Phishing_Email_Datasets/25432108",
+      "citation": "Champa, Rabbi, & Zibran (2024)",
+      "license": "CC BY 4.0",
+      "sha256": "f5d6930763cae6feeae6484131c79655a7440abbb97d6f51eab757aea4e6ab4b",
+      "notes": "Advance-fee fraud is malicious social engineering but is not silently relabelled as phishing."
+    },
+    {
+      "id": "spaphish_v5",
+      "path": "data/external/spaphish_v5.csv",
+      "role": "external_primary",
+      "original_labels": {
+        "0": "legitimate",
+        "1": "phishing"
+      },
+      "research_binary": {
+        "0": 0,
+        "1": 1
+      },
+      "provenance_url": "https://data.mendeley.com/datasets/hz2d6gz7pc/5",
+      "doi": "10.17632/hz2d6gz7pc.5",
+      "license": "CC BY 4.0",
+      "sha256": "656b2245d58da72d640680e5c2a168673a130b38607f2a427c773bbb167e995e",
+      "collection_period": "2014-2025",
+      "notes": "1,395 real Spanish emails; triple independent annotation with adjudication. Never used for training or threshold selection."
+    },
+    {
+      "id": "uot_validation_2024",
+      "path": "data/external/uot_phishing_validation_2024.csv",
+      "role": "external_secondary",
+      "original_labels": {
+        "Safe Email": "legitimate",
+        "Phishing Email": "phishing"
+      },
+      "research_binary": {
+        "Safe Email": 0,
+        "Phishing Email": 1
+      },
+      "provenance_url": "https://zenodo.org/records/13474746",
+      "doi": "10.5281/zenodo.13474746",
+      "license": "CC BY 4.0",
+      "sha256": "ad15f63cb8db2caaee33c442f1ff4488b9444530a4c42ab63bb580016b160bd3",
+      "published": "2024-08-29",
+      "notes": "2,000 English examples mixing real and artificial content. Highly templated; reported only as a secondary robustness set and with unique-template metrics."
+    },
+    {
+      "id": "major_corpus_2026",
+      "path": "data/external/major_corpus/meajor_cleaned_preprocessed.parquet.gzip",
+      "role": "external_secondary",
+      "collection": "MeAJOR: Merged email Assets from Joint Open-source Repositories",
+      "original_labels": {
+        "0": "legitimate",
+        "1": "phishing"
+      },
+      "research_binary": {
+        "0": 0,
+        "1": 1
+      },
+      "provenance_url": "https://zenodo.org/records/18471483",
+      "doi": "10.5281/zenodo.18471483",
+      "license": "CC BY 4.0",
+      "sha256": "5a9de6c207634f068928ed0cc68d78ee2fd594ed9a587daf4048974c95715c1a",
+      "published": "2026-02-03",
+      "notes": "MeAJOR Corpus: 108,685 anonymized emails with engineered header/body/URL features; 1 row with missing label is dropped by the research loader. Large external test source; expect longer benchmark evaluation."
+    }
+  ],
+  "excluded_sources": [
+    {
+      "id": "trec_2005",
+      "path": "data/TREC_05.csv",
+      "role": "excluded_pending_license_provenance",
+      "license": "unknown",
+      "publication_eligible": false,
+      "sha256": "cb93c37ff21a3ecc8ff71351b279850ff8698ae00399541c3599600639b60b8c",
+      "notes": "Excluded from paper-v2 training until reuse terms and a citable provenance record are verified."
+    },
+    {
+      "id": "trec_2006",
+      "path": "data/TREC_06.csv",
+      "role": "excluded_pending_license_provenance",
+      "license": "unknown",
+      "publication_eligible": false,
+      "sha256": "8ca6b1249f30f0a74790b8a34d4dbe248d526cfb0b13227b41970a1ebd638be5",
+      "notes": "Excluded from paper-v2 training until reuse terms and a citable provenance record are verified."
+    },
+    {
+      "id": "trec_2007",
+      "path": "data/TREC_07.csv",
+      "role": "excluded_pending_license_provenance",
+      "license": "unknown",
+      "publication_eligible": false,
+      "sha256": "48c79ed8bd173587a73d9171d1c315229c44b7ee201f83a95883feed241d6c4b",
+      "notes": "Excluded from paper-v2 evaluation until reuse terms and a citable provenance record are verified."
+    },
+    {
+      "id": "hf_phishing_email",
+      "path": "data/Phishing_Email.csv",
+      "role": "excluded_pending_license_provenance",
+      "license": "unknown",
+      "publication_eligible": false,
+      "sha256": "18ef4fff1acb8986f0ab01e83ede6025420c829656af5a377560fce17e153b97",
+      "provenance_url": "https://huggingface.co/datasets/puyang2025/phish-email-datasets",
+      "notes": "Excluded from paper-v2 training because the available record does not establish reusable publication terms or original-source lineage."
+    },
+    {
+      "id": "cybersectony_phishingemail_v2_train",
+      "path": "data/phishing_email_text_200k.csv",
+      "role": "excluded_derived_composite",
+      "license": "unknown",
+      "publication_eligible": false,
+      "sha256": "0069628868e4308045b38f87c9af2081c43a270b452c47e7680cf0ee9cb83f9c",
+      "provenance_url": "https://huggingface.co/datasets/cybersectony/PhishingEmailDetectionv2.0",
+      "notes": "Mixed email/URL derivative with extensive overlap against registered email corpora and PhiUSIIL. Its phishing-email label collapses many original spam examples into the positive class, violating the paper task definition."
+    },
+    {
+      "id": "vietnamese_sms_candidate",
+      "path": "data/vietnamese_pure_phishing_email.csv",
+      "role": "excluded_pending_provenance",
+      "task_scope": "out_of_domain_vietnamese_sms_stress",
+      "license": "unknown",
+      "publication_eligible": false,
+      "sha256": "e5c563abc4fe766951906c070acff29f242955679004ddc62dbccd6e79c817ac",
+      "notes": "Primarily Vietnamese SMS rather than email. Provenance, licence, label ontology, and anonymization require verification before any research use."
+    }
+  ],
+  "url_submodule_sources": [
+    {
+      "id": "phiusiil_url_2024",
+      "path": "data/phiusiil_phishing_url.csv",
+      "role": "url_submodule_benchmark",
+      "text_column": "URL",
+      "label_column": "label",
+      "original_labels": {
+        "0": "phishing",
+        "1": "legitimate"
+      },
+      "research_binary": {
+        "0": 1,
+        "1": 0
+      },
+      "provenance_url": "https://archive.ics.uci.edu/dataset/967/phiusil-phishing-url-dataset",
+      "doi": "10.1016/j.cose.2023.103545",
+      "license": "CC BY 4.0",
+      "sha256": "c03cfe13d32a600eb58404f9964c8a3b061b75f705364195d75ff0ef53b712f2",
+      "split_policy": "Canonicalize and deduplicate URLs, then group by registrable domain.",
+      "sharing_policy": "Redact URL userinfo, query, and fragment from shareable prediction artifacts."
+    }
+  ],
+  "excluded_derived_files": [
+    "data/combined_data_refined.csv",
+    "data/combined_data_with_vn.csv",
+    "data/phishing_email.csv",
+    "data/dataset_imbalanced.csv",
+    "data/dataset_with_features.csv",
+    "data/AVN_Basic.csv",
+    "data/Nigerian_5.csv",
+    "data/meajor_cleaned_preprocessed.csv",
+    "data/phishing_nlp_dataset.xlsx",
+    "data/phishing_email_text_200k.csv",
+    "data/vietnamese_pure_phishing_email.csv"
+  ],
+  "exclusion_reason": "Derived/composite files collapse source semantics, duplicate registered sources, or are structurally malformed. They are not authoritative inputs to the research benchmark."
+}

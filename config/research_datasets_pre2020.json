@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "temporal_filter": {
+    "rule": "row-level year < 2020",
+    "cutoff_year": 2020,
+    "strict": true,
+    "unparseable_time_policy": "exclude",
+    "no_time_column_policy": "exclude_source"
+  },
+  "task_definition": {
+    "primary_task": "Binary phishing detection",
+    "positive_class": "phishing",
+    "negative_classes": [
+      "legitimate",
+      "spam"
+    ],
+    "excluded_from_primary": [
+      "other_fraud"
+    ],
+    "rationale": "Spam is retained as a hard negative, not relabelled as phishing. Advance-fee fraud remains visible for boundary auditing but is not silently treated as phishing.",
+    "secondary_task": "Four-way descriptive audit: legitimate, spam, phishing, other_fraud"
+  },
+  "sources": [
+    {
+      "id": "ceas_2008",
+      "path": "data/filtered_pre2020/CEAS_08.csv",
+      "role": "train",
+      "collection": "Seven Phishing Email Datasets",
+      "original_labels": {
+        "0": "legitimate",
+        "1": "spam"
+      },
+      "research_binary": {
+        "0": 0,
+        "1": 0
+      },
+      "provenance_url": "https://figshare.com/articles/dataset/Seven_Phishing_Email_Datasets/25432108",
+      "citation": "Champa, Rabbi, & Zibran (2024)",
+      "license": "CC BY 4.0",
+      "sha256": "e8faf6d349fa32965d5f6694cf457dd665e5f190ec0f8d19c7b54b109eca0a78",
+      "notes": "Historical 2008 spam corpus; years and volatile identifiers are masked in the research text.",
+      "temporal_filter": {
+        "column": "date",
+        "rule": "year < 2020",
+        "input_rows": 39154,
+        "retained_rows": 39130,
+        "excluded_at_or_after_cutoff": 9,
+        "excluded_unparseable_time": 15
+      }
+    },
+    {
+      "id": "spamassassin",
+      "path": "data/filtered_pre2020/SpamAssassin.csv",
+      "role": "train",
+      "collection": "Seven Phishing Email Datasets",
+      "original_labels": {
+        "0": "legitimate",
+        "1": "spam"
+      },
+      "research_binary": {
+        "0": 0,
+        "1": 0
+      },
+      "provenance_url": "https://figshare.com/articles/dataset/Seven_Phishing_Email_Datasets/25432108",
+      "citation": "Champa, Rabbi, & Zibran (2024)",
+      "license": "CC BY 4.0",
+      "sha256": "df3cc1c4bfd0cb59f37c63189956816f826c9edef79eff302a806557852febb3",
+      "notes": "Label 1 is spam; spelling of the legacy combined-data source is not used.",
+      "temporal_filter": {
+        "column": "date",
+        "rule": "year < 2020",
+        "input_rows": 5809,
+        "retained_rows": 5724,
+        "excluded_at_or_after_cutoff": 3,
+        "excluded_unparseable_time": 82
+      }
+    },
+    {
+      "id": "nazario_phishing",
+      "path": "data/filtered_pre2020/Nazario.csv",
+      "role": "train",
+      "collection": "Seven Phishing Email Datasets",
+      "original_labels": {
+        "1": "phishing"
+      },
+      "research_binary": {
+        "1": 1
+      },
+      "provenance_url": "https://figshare.com/articles/dataset/Seven_Phishing_Email_Datasets/25432108",
+      "citation": "Champa, Rabbi, & Zibran (2024)",
+      "license": "CC BY 4.0",
+      "sha256": "e0cb34ee1b3cf27256fee06d351fa3883c341b5c075847761671f773001fb5ec",
+      "notes": "The only verified phishing-positive source in the historical local training collection.",
+      "temporal_filter": {
+        "column": "date",
+        "rule": "year < 2020",
+        "input_rows": 1565,
+        "retained_rows": 1137,
+        "excluded_at_or_after_cutoff": 423,
+        "excluded_unparseable_time": 5
+      }
+    },
+    {
+      "id": "nazario_5_parquet",
+      "path": "data/filtered_pre2020/Nazario_5.parquet",
+      "role": "train",
+      "collection": "Hugging Face parquet export",
+      "original_labels": {
+        "0": "legitimate",
+        "1": "phishing"
+      },
+      "research_binary": {
+        "0": 0,
+        "1": 1
+      },
+      "provenance_url": "local parquet dataset added for practical retraining",
+      "license": "unknown",
+      "sha256": "3bfaf6018cbdc945569e94dd3678505e04280266007d7da83074cc57e56b0f72",
+      "notes": "Mixed legitimate/phishing parquet source (1,500 legitimate; 1,565 phishing). Included in the practical ML training corpus; provenance/license should be verified before publication claims.",
+      "temporal_filter": {
+        "column": "date",
+        "rule": "year < 2020",
+        "input_rows": 3065,
+        "retained_rows": 2635,
+        "excluded_at_or_after_cutoff": 423,
+        "excluded_unparseable_time": 7
+      }
+    },
+    {
+      "id": "nigerian_fraud",
+      "path": "data/filtered_pre2020/Nigerian_Fraud.csv",
+      "role": "boundary_audit",
+      "collection": "Seven Phishing Email Datasets",
+      "original_labels": {
+        "1": "other_fraud"
+      },
+      "research_binary": {
+        "1": null
+      },
+      "provenance_url": "https://figshare.com/articles/dataset/Seven_Phishing_Email_Datasets/25432108",
+      "citation": "Champa, Rabbi, & Zibran (2024)",
+      "license": "CC BY 4.0",
+      "sha256": "e76db215ab068249068caa9b5e2ded68b779a3671bee42cd3fcf9a9885d31a44",
+      "notes": "Advance-fee fraud is malicious social engineering but is not silently relabelled as phishing.",
+      "temporal_filter": {
+        "column": "date",
+        "rule": "year < 2020",
+        "input_rows": 3332,
+        "retained_rows": 2849,
+        "excluded_at_or_after_cutoff": 1,
+        "excluded_unparseable_time": 482
+      }
+    },
+    {
+      "id": "spaphish_v5",
+      "path": "data/filtered_pre2020/external/spaphish_v5.csv",
+      "role": "external_primary",
+      "original_labels": {
+        "0": "legitimate",
+        "1": "phishing"
+      },
+      "research_binary": {
+        "0": 0,
+        "1": 1
+      },
+      "provenance_url": "https://data.mendeley.com/datasets/hz2d6gz7pc/5",
+      "doi": "10.17632/hz2d6gz7pc.5",
+      "license": "CC BY 4.0",
+      "sha256": "d6639f99f7b08201c421918fec2698a926ad93fefca36db2999715048b4b556e",
+      "collection_period": "2014-2025",
+      "notes": "1,395 real Spanish emails; triple independent annotation with adjudication. Never used for training or threshold selection.",
+      "temporal_filter": {
+        "column": "date",
+        "rule": "year < 2020",
+        "input_rows": 1395,
+        "retained_rows": 46,
+        "excluded_at_or_after_cutoff": 1325,
+        "excluded_unparseable_time": 24
+      }
+    },
+    {
+      "id": "major_corpus_2026",
+      "path": "data/filtered_pre2020/external/major_corpus/meajor_cleaned_preprocessed.parquet.gzip",
+      "role": "external_secondary",
+      "collection": "MeAJOR: Merged email Assets from Joint Open-source Repositories",
+      "original_labels": {
+        "0": "legitimate",
+        "1": "phishing"
+      },
+      "research_binary": {
+        "0": 0,
+        "1": 1
+      },
+      "provenance_url": "https://zenodo.org/records/18471483",
+      "doi": "10.5281/zenodo.18471483",
+      "license": "CC BY 4.0",
+      "sha256": "97bbd5e3da3bd8175882d0feb982fc1f5d8e1709edea2f793c97065217516ab3",
+      "published": "2026-02-03",
+      "notes": "MeAJOR Corpus: 108,685 anonymized emails with engineered header/body/URL features; 1 row with missing label is dropped by the research loader. Large external test source; expect longer benchmark evaluation.",
+      "temporal_filter": {
+        "column": "date",
+        "rule": "year < 2020",
+        "input_rows": 108685,
+        "retained_rows": 108658,
+        "excluded_at_or_after_cutoff": 27,
+        "excluded_unparseable_time": 0
+      }
+    }
+  ],
+  "excluded_derived_files": [
+    "data/combined_data_refined.csv",
+    "data/combined_data_with_vn.csv",
+    "data/phishing_email.csv",
+    "data/dataset_imbalanced.csv",
+    "data/dataset_with_features.csv"
+  ],
+  "exclusion_reason": "Derived files collapse source semantics or mix spam with phishing and therefore cannot be authoritative inputs to the research benchmark."
+}

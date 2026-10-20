@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "protocol": "hybrid-paper-v1-four-part-grouped",
+  "seed": 20260715,
+  "partition_policy": {
+    "ml_train_approximate_share": 0.55,
+    "fusion_train_approximate_share": 0.15,
+    "threshold_selection_approximate_share": 0.15,
+    "locked_internal_test_approximate_share": 0.15,
+    "group_key": "normalized template hash",
+    "exact_duplicate_key": "normalized content SHA-256"
+  },
+  "ml_variants": ["word", "word_char"],
+  "model_selection": {
+    "method": "StratifiedGroupKFold",
+    "folds": 5,
+    "primary_metric": "average_precision"
+  },
+  "threshold_policy": "maximize F2 on threshold_selection only",
+  "fusion": {
+    "full": "ML + technical layers 1-10 + Local LLM",
+    "fallback": "ML + technical layers 1-10",
+    "estimator": "balanced Logistic Regression with standardized inputs"
+  },
+  "llm": {
+    "temperature": 0.0,
+    "missing_policy": "abstain; never impute from ML or matrix",
+    "required_runtime_fields": [
+      "label",
+      "phishing_probability",
+      "confidence",
+      "abstain",
+      "signals",
+      "reason"
+    ]
+  },
+  "bootstrap_iterations": 200
+}
