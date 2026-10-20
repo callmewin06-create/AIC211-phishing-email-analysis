@@ -1,0 +1,12 @@
+From: Example Helpdesk <helpdesk@example.com>
+To: Example Analyst <analyst@example.org>
+Reply-To: Example Verification <support@verify-account.example>
+Subject: URGENT: Account verification required
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+This is a fabricated training example, not a real email.
+Your account will be suspended. Verify your password immediately at
+https://verify-account.example/login
+
+No link in this fixture should be opened during analysis.
