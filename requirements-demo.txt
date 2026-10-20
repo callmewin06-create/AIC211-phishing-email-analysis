@@ -1,0 +1,3 @@
+# Minimal environment for the offline indicator demo and tests_public.
+# Separate from the full research/dashboard environment in requirements.lock.
+numpy==2.3.5

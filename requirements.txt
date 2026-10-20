@@ -1,0 +1,3 @@
+# Runtime installation entry point. The generated lock contains exact
+# transitive versions and SHA-256 hashes; update it only via requirements.in.
+-r requirements.lock

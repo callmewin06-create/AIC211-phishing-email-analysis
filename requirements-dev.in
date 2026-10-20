@@ -1,0 +1,15 @@
+-r requirements-research.in
+
+# Quality gates are part of the supported build, not optional local tooling.
+pytest==9.0.3
+coverage==7.13.4
+ruff==0.15.4
+mypy==1.19.1
+bandit==1.9.4
+pip-audit==2.10.0
+hypothesis==6.151.9
+pip-tools==7.6.0
+# pip-tools 7.6.0 officially supports pip 26.1. Pin the patched 26.1 line;
+# pip 25.3 is retained by neither the environment nor the lock because the
+# dependency audit reports known vulnerabilities in it.
+pip==26.1.2
