@@ -1,0 +1,128 @@
+{
+  "mode": "offline_technical_evidence_only",
+  "final_verdict": null,
+  "ml_available": false,
+  "llm_available": false,
+  "layers": [
+    {
+      "layer": 1,
+      "key": "transport_ip",
+      "name": "Transport/IP evidence",
+      "category": "technical",
+      "state": "UNKNOWN",
+      "risk": null,
+      "observed": false,
+      "detail": "No trusted transport header was supplied."
+    },
+    {
+      "layer": 2,
+      "key": "sender_domain",
+      "name": "Sender/domain reputation",
+      "category": "technical",
+      "state": "NO_INDICATOR",
+      "risk": 0.0,
+      "observed": true,
+      "detail": "Sender domain observed: example.com; this does not prove safety."
+    },
+    {
+      "layer": 3,
+      "key": "authentication",
+      "name": "SPF/DKIM/DMARC evidence",
+      "category": "technical",
+      "state": "UNKNOWN",
+      "risk": null,
+      "observed": false,
+      "detail": "No trusted gateway authentication result supplied."
+    },
+    {
+      "layer": 4,
+      "key": "routing",
+      "name": "Message routing anomaly",
+      "category": "technical",
+      "state": "UNKNOWN",
+      "risk": null,
+      "observed": false,
+      "detail": "Routing path unavailable."
+    },
+    {
+      "layer": 5,
+      "key": "header_consistency",
+      "name": "Header identity consistency",
+      "category": "technical",
+      "state": "RISK",
+      "risk": 0.8,
+      "observed": true,
+      "detail": "From domain example.com differs from Reply-To verify-account.example."
+    },
+    {
+      "layer": 6,
+      "key": "social_engineering",
+      "name": "Social-engineering language",
+      "category": "behavioural",
+      "state": "RISK",
+      "risk": 0.6799999999999999,
+      "observed": true,
+      "detail": "Urgency=1, credential=2, payment=0 signals."
+    },
+    {
+      "layer": 7,
+      "key": "obfuscation",
+      "name": "Obfuscation/adversarial content",
+      "category": "behavioural",
+      "state": "NO_INDICATOR",
+      "risk": 0.0,
+      "observed": true,
+      "detail": "Obfuscation signals: bidi-control=False, zero-width-count=0, zero-width-evasion=False, separated-word=False, substituted-leetspeak=False. MIME/Base64 transfer encoding is not treated as evasion."
+    },
+    {
+      "layer": 8,
+      "key": "html_deception",
+      "name": "HTML/visual deception",
+      "category": "technical",
+      "state": "UNKNOWN",
+      "risk": null,
+      "observed": false,
+      "detail": "No HTML body supplied."
+    },
+    {
+      "layer": 9,
+      "key": "url_intelligence",
+      "name": "URL/link intelligence",
+      "category": "technical",
+      "state": "NO_INDICATOR",
+      "risk": 0.0,
+      "observed": true,
+      "detail": "Found 1 URL(s); maximum offline lexical risk=0.00."
+    },
+    {
+      "layer": 10,
+      "key": "attachment",
+      "name": "Attachment risk",
+      "category": "technical",
+      "state": "NO_INDICATOR",
+      "risk": 0.0,
+      "observed": true,
+      "detail": "Observed 0 MIME attachment(s); no dangerous filename extension. Metadata check only—no sandbox execution."
+    },
+    {
+      "layer": 11,
+      "key": "ml_detector",
+      "name": "Machine-learning detector",
+      "category": "model",
+      "state": "UNKNOWN",
+      "risk": null,
+      "observed": false,
+      "detail": "ML result unavailable."
+    },
+    {
+      "layer": 12,
+      "key": "llm_review",
+      "name": "Local-LLM semantic review",
+      "category": "model",
+      "state": "UNKNOWN",
+      "risk": null,
+      "observed": false,
+      "detail": "Local-LLM result unavailable; no value is imputed."
+    }
+  ]
+}
