@@ -1,0 +1,12 @@
+[server]
+# A reverse proxy with TLS and enterprise authentication must be used before
+# exposing this service outside the host.  Binding to loopback is the safe
+# default for the on-premise deployment documented in this repository.
+address = "127.0.0.1"
+headless = true
+enableCORS = true
+enableXsrfProtection = true
+maxUploadSize = 5
+
+[browser]
+gatherUsageStats = false
