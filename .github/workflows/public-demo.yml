@@ -1,0 +1,27 @@
+name: Public demo checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-demo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install minimal demo dependency
+        run: python -m pip install -r requirements-demo.txt
+      - name: Compile published Python source
+        run: python -m compileall -q src app.py tools tests_public
+      - name: Run public-clone tests
+        run: python -m unittest discover -s tests_public -v
+      - name: Run synthetic offline demonstration
+        run: python tools/demo_indicators.py
